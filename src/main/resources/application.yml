@@ -1,0 +1,11 @@
+application:    
+  external:
+    config:
+      mapper-batis-location: classpath*:config/mybatis/*.xml
+    db:
+      username: SYSTEM
+      password: juan1077
+      host : localhost
+      database : xe
+      port : 1522
+      driver : thin

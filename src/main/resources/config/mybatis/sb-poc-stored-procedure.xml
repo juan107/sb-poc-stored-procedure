@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.bolivar.poc.repository.PocStoredProcedureRepository"> 		
+		
+<!--    <resultMap id = "consultaClienteRequest" type = "com.bolivar.poc.dto.ConsultaClienteRequestDTO"> -->
+<!--       <result property = "tipoDocumento" column = "tipo_documento"/> -->
+<!--       <result property = "numeroDocumento" column = "numero_documento"/> -->
+<!--    </resultMap>    -->
+   
+   <resultMap id = "consultaClienteResponse" type = "com.bolivar.poc.dto.ConsultaClienteResponseDTO">
+      <result property = "nombreCliente" column = "nombre_cliente"/>
+      <result property = "apellidoCliente" column = "apellido_cliente"/>
+   </resultMap> 
+   
+   <select id = "consultarCliente" statementType = "CALLABLE">
+      {call TEST_MICRO(#{tipoDocumento, jdbcType = VARCHAR, mode = IN},
+      #{numeroDocumento, jdbcType = VARCHAR, mode = IN},    
+      #{nombreCliente, jdbcType=VARCHAR, resultMap=consultaClienteResponse, mode=OUT},
+      #{apellidoCliente, jdbcType = VARCHAR, resultMap=consultaClienteResponse, mode = OUT}
+      )}
+   </select>     	
+</mapper>
